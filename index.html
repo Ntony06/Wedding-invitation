@@ -4,7 +4,20 @@
 <meta charset="utf-8">
 <title>Video</title>
 <style>
-  body { margin: 0; background: black; }
+  body { 
+    margin: 0; 
+    background: black; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    cursor: pointer;
+  }
+  #overlay {
+    color: white;
+    font-size: 24px;
+    text-align: center;
+  }
   iframe {
     position: fixed;
     top: 0;
@@ -12,16 +25,31 @@
     width: 100vw;
     height: 100vh;
     border: none;
+    display: none;
   }
 </style>
 </head>
 <body>
 
+<div id="overlay">
+  ▶️ Tocca per avviare il video
+</div>
+
 <iframe 
-  src="https://player.vimeo.com/video/1189496532" 
+  id="video"
+  src=""
   allow="autoplay; fullscreen"
   allowfullscreen>
 </iframe>
+
+<script>
+  document.body.addEventListener("click", function() {
+    const iframe = document.getElementById("video");
+    iframe.src = "https://player.vimeo.com/video/1189496532?autoplay=1";
+    iframe.style.display = "block";
+    document.getElementById("overlay").style.display = "none";
+  }, { once: true });
+</script>
 
 </body>
 </html>
